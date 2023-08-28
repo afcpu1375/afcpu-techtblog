@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/models/fake_data.dart';
-import 'package:tec/my_Colors.dart';
-import 'package:tec/my_Strings.dart';
-import 'package:tec/my_Component.dart';
+import 'package:tec/components/my_Colors.dart';
+import 'package:tec/components/my_Strings.dart';
+import 'package:tec/components/my_Component.dart';
 
 class profileScreen extends StatelessWidget {
   const profileScreen({

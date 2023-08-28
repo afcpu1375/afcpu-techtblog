@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/models/fake_data.dart';
-import 'my_Colors.dart';
+import '../components/my_Colors.dart';
 
 class techDivider extends StatelessWidget {
   const techDivider({

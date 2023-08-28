@@ -4,9 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/models/data_models.dart';
 import 'package:tec/models/fake_data.dart';
-import 'package:tec/my_Colors.dart';
-import 'package:tec/my_Component.dart';
-import 'package:tec/my_Strings.dart';
+import 'package:tec/components/my_Colors.dart';
+import 'package:tec/components/my_Component.dart';
+import 'package:tec/components/my_Strings.dart';
 
 class MyCats extends StatefulWidget {
   @override
@@ -142,7 +142,12 @@ class _MyCatsState extends State<MyCats> {
                                   InkWell(
                                     onTap: ((){
                                       setState(() {
-                                        selectedTags.removeAt(index);
+                                        if(!selectedTags.contains(tagList[index])){
+                                          selectedTags.removeAt(index);
+                                        }else{
+                                          print("${tagList[index].title} exist");
+                                        }
+
                                       });
                                     }),
                                       child: const Icon(CupertinoIcons.delete,color: Colors.grey,)),

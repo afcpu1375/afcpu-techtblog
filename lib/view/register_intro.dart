@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:tec/gen/assets.gen.dart';
-import 'package:tec/my_Strings.dart';
+import 'package:tec/components/my_Strings.dart';
 import 'package:tec/view/my_cats.dart';
 import 'package:validators/validators.dart';
 

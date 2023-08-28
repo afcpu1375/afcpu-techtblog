@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:tec/my_Colors.dart';
+import 'package:tec/components/my_Colors.dart';
+import 'package:tec/view/main_screen.dart';
 import 'package:tec/view/register_intro.dart';
 import 'package:tec/view/splash_Screen.dart';
 
@@ -89,6 +90,6 @@ class MyApp extends StatelessWidget {
                   color: solidColors.textTiltle,
                   fontWeight: FontWeight.w700),
             )),
-        home: RegisterIntro());
+        home: MainScreen());
   }
 }
