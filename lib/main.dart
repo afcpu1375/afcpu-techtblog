@@ -90,6 +90,6 @@ class MyApp extends StatelessWidget {
                   color: solidColors.textTiltle,
                   fontWeight: FontWeight.w700),
             )),
-        home: MainScreen());
+        home: splashScreen());
   }
 }

@@ -1,4 +1,5 @@
 class myStrings {
+  static const String urlGitHub = "https://github.com/afcpu1375/afcpu-techtblog/tree/master";
   static const String viewHotestBlog = "مشاهده داغ ترین نوشته ها";
   static const String viewHotestPodCasts = "مشاهده داغ ترین پادکست ها";
   static const String relatedArticle = "نوشته های مرتبط";

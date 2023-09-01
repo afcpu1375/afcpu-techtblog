@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:share_plus/share_plus.dart';
+import 'package:tec/components/my_Component.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/models/fake_data.dart';
 import 'package:tec/components/my_Colors.dart';
@@ -8,17 +11,10 @@ import 'package:tec/view/home_screen.dart';
 import 'package:tec/view/main_screen.dart';
 import 'package:tec/view/profile_screen.dart';
 
-class MainScreen extends StatefulWidget {
-
-
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
+class MainScreen extends StatelessWidget {
   final GlobalKey<ScaffoldState> _key = GlobalKey();
 
-  var selectedPageIndex = 0;
+  RxInt selectedPageIndex = 0.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +26,11 @@ class _MainScreenState extends State<MainScreen> {
 
     // TODO: implement build
     return Scaffold(
-      key: _key ,
+      key: _key,
       drawer: Drawer(
         backgroundColor: solidColors.scafoldBg,
         child: Padding(
-          padding:  EdgeInsets.only(right: bodyMargin,left: bodyMargin),
+          padding: EdgeInsets.only(right: bodyMargin, left: bodyMargin),
           child: ListView(
             children: [
               DrawerHeader(
@@ -42,39 +38,52 @@ class _MainScreenState extends State<MainScreen> {
                       child: Image.asset(
                 Assets.images.splash.path,
                 scale: 3,
-              ))
-              ),
-
-
+              ))),
               ListTile(
-                title: Text("پروفایل کاربری",style: textTheme.headline6,),
-                onTap: (){
-
-                },
-
+                title: Text(
+                  "پروفایل کاربری",
+                  style: textTheme.headline6,
+                ),
+                onTap: () {},
               ),
-              Divider(color: solidColors.dividerColor,),            ListTile(
-                title: Text("درباره تک بلاگ",style: textTheme.headline6,),
-                onTap: (){
-
-                },
-
+              const Divider(
+                color: solidColors.dividerColor,
               ),
-              Divider(color: solidColors.dividerColor,),            ListTile(
-                title: Text("اشتراک گذاری تک بلاگ",style: textTheme.headline6,),
-                onTap: (){
-
-                },
-
+              ListTile(
+                title: Text(
+                  "درباره تک بلاگ",
+                  style: textTheme.headline6,
+                ),
+                onTap: () {},
               ),
-              Divider(color: solidColors.dividerColor,),            ListTile(
-                title: Text("تک بلاگ در گیت هاب",style: textTheme.headline6,),
-                onTap: (){
-
-                },
-
+              Divider(
+                color: solidColors.dividerColor,
               ),
-              Divider(color: solidColors.dividerColor,),
+              ListTile(
+                title: Text(
+                  "اشتراک گذاری تک بلاگ",
+                  style: textTheme.headline6,
+                ),
+                onTap: () async {
+
+                      await Share.share("this is for test");
+                },
+              ),
+              Divider(
+                color: solidColors.dividerColor,
+              ),
+              ListTile(
+                title: Text(
+                  "تک بلاگ در گیت هاب",
+                  style: textTheme.headline6,
+                ),
+                onTap: () {
+                  mylaunchUrl(myStrings.urlGitHub);
+                },
+              ),
+              Divider(
+                color: solidColors.dividerColor,
+              ),
             ],
           ),
         ),
@@ -87,8 +96,8 @@ class _MainScreenState extends State<MainScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             InkWell(
-              onTap: ((){
-                    _key.currentState!.openDrawer();
+              onTap: (() {
+                _key.currentState!.openDrawer();
               }),
               child: const Icon(
                 Icons.menu,
@@ -107,24 +116,26 @@ class _MainScreenState extends State<MainScreen> {
         children: [
           Center(
               child: Positioned.fill(
-                  child: IndexedStack(
-            index: selectedPageIndex,
-            children: [
-              homeScreen(
-                  size: size, textTheme: textTheme, bodyMargin: bodyMargin),
-              //0
-              profileScreen(
-                  size: size, textTheme: textTheme, bodyMargin: bodyMargin)
-              //1
-            ],
-          ))),
+                  child: Obx(() => IndexedStack(
+                        index: selectedPageIndex.value,
+                        children: [
+                          homeScreen(
+                              size: size,
+                              textTheme: textTheme,
+                              bodyMargin: bodyMargin),
+                          //0
+                          profileScreen(
+                              size: size,
+                              textTheme: textTheme,
+                              bodyMargin: bodyMargin)
+                          //1
+                        ],
+                      )))),
           bottomNavigation(
             size: size,
             bodyMargin: bodyMargin,
             changeScreen: (int value) {
-              setState(() {
-                selectedPageIndex = value;
-              });
+              selectedPageIndex.value = value;
             },
           ),
         ],

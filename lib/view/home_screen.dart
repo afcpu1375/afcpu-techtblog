@@ -156,6 +156,7 @@ class seeMorePodCast extends StatelessWidget {
           ImageIcon(
             Assets.icons.mic.provider(),
             color: solidColors.seeMore,
+
           ),
           const SizedBox(
             width: 8,

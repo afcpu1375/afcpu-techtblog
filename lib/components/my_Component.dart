@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tec/gen/assets.gen.dart';
 import 'package:tec/models/fake_data.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../components/my_Colors.dart';
 
 class techDivider extends StatelessWidget {
@@ -67,5 +70,11 @@ class MainTags extends StatelessWidget {
   }
 }
 
-
-
+mylaunchUrl(String url) async {
+  var uri = Uri.parse(url);
+  if (await canLaunchUrl(uri)) {
+    await launchUrl(uri);
+  } else {
+    log("coud not launch url");
+  }
+}
